@@ -11,25 +11,31 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
+      - run:
+        name: Install Node Dependencies
+        command: npm install -g cordova
+      - run:
+        name: Build Android
+        command: cordova build android --verbose
       # - restore_cache:
       #     key: jars-{{ checksum "platforms/android/build.gradle" }}-{{ checksum  "platforms/android/app/build.gradle" }}
-      - run:
-          name: Download Dependencies
-          command: |
-            ./platforms/android/gradle
-            ./platforms/android/gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/platforms/android/.gradle
-          key: jars-{{ checksum "platforms/android/build.gradle" }}-{{ checksum  "platforms/android/app/build.gradle" }}
-      - run:
-          name: Run Tests
-          command: ./platforms/android/gradlew lint test
-      - store_artifacts:
-          path: platforms/android/app/build/reports
-          destination: reports
-      - store_test_results:
-          path: platforms/android/app/build/test-results
+      # - run:
+      #     name: Download Dependencies
+      #     command: |
+      #       ./platforms/android/gradle
+      #       ./platforms/android/gradlew androidDependencies
+      # - save_cache:
+      #     paths:
+      #       - ~/platforms/android/.gradle
+      #     key: jars-{{ checksum "platforms/android/build.gradle" }}-{{ checksum  "platforms/android/app/build.gradle" }}
+      # - run:
+      #     name: Run Tests
+      #     command: ./platforms/android/gradlew lint test
+      # - store_artifacts:
+      #     path: platforms/android/app/build/reports
+      #     destination: reports
+      # - store_test_results:
+      #     path: platforms/android/app/build/test-results
 
 
 
