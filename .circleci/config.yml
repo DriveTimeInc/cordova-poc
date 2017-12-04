@@ -13,10 +13,10 @@ jobs:
       - checkout
       - run:
           name: Install Node Dependencies
-          command: npm install -g cordova
+          command: npm install
       - run:
           name: Build Android
-          command: cordova build android --verbose
+          command: npm run build:android
 
       # - restore_cache:
       #     key: jars-{{ checksum "platforms/android/build.gradle" }}-{{ checksum  "platforms/android/app/build.gradle" }}
