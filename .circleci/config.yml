@@ -17,9 +17,9 @@ jobs:
       - run:
           name: Install Globals
           command: | #echo "Gradle Version $GRADLE_VERSION" #&& brew install gradle
-            ENV GRADLE_VERSION=3.2.1
+            #ENV GRADLE_VERSION=3.2.1
             RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/gradle.zip \
-                https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip \
+                https://services.gradle.org/distributions/gradle-3.2.1-bin.zip \
               && unzip -d /opt /tmp/gradle.zip \
               && rm /tmp/gradle.zip \
               && ln -s /opt/gradle-* /opt/gradle \
