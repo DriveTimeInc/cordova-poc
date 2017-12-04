@@ -2,27 +2,50 @@ version: 2
 jobs:
   #build-and-test:
   build:
-    macos:
-      xcode: "9.0"
+    # macos:
+    #   xcode: "9.0"
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-node8-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      # Download CocoaPods specs via HTTPS (faster than Git)
-      # and install CocoaPods.
+      - restore_cache:
+          key: jars-{{ checksum "platforms/android/build.gradle" }}-{{ checksum  "platforms/android/app/build.gradle" }}
       - run:
-          name: Install CocoaPods
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-            pod install
+          name: Download Dependencies
+          command: platforms/android/gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/platforms/android/.gradle
+          key: jars-{{ checksum "platforms/android/build.gradle" }}-{{ checksum  "platforms/android/app/build.gradle" }}
+      - run:
+          name: Run Tests
+          command: ./platforms/android/gradlew lint test
+      - store_artifacts:
+          path: platforms/android/app/build/reports
+          destination: reports
+      - store_test_results:
+          path: platforms/android/app/build/test-results
 
 
-      - brew list -1 | while read line; do brew unlink $line; brew link $line; done
-      - brew install node && sudo brew postinstall node
-      - brew install caskroom/cask/brew-cask
-      - brew cask install java
-      - brew install android-sdk
-      - npm install -g cordova ios-deploy ios-sim
-      - gem update fastlane
-      - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-27.0.1,android-27
+
+
+
+      # - checkout
+      # # Download CocoaPods specs via HTTPS (faster than Git)
+      # # and install CocoaPods.
+
+
+      # - brew list -1 | while read line; do brew unlink $line; brew link $line; done
+      # - brew install node && sudo brew postinstall node
+      # - brew install caskroom/cask/brew-cask
+      # - brew cask install java
+      # - brew install android-sdk
+      # - npm install -g cordova ios-deploy ios-sim
+      # - gem update fastlane
+      # - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-27.0.1,android-27
 
 
 
