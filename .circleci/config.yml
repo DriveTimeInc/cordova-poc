@@ -15,6 +15,9 @@ jobs:
           name: Install Node Dependencies
           command: npm install
       - run:
+          name: Prepare
+          command: npm run build:prepare
+      - run:
           name: Build Android
           command: npm run build:android
 
