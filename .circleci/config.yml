@@ -15,6 +15,9 @@ jobs:
           name: Install Node Dependencies
           command: npm install
       - run:
+          name: Install Globals
+          command: brew install gradle
+      - run:
           name: Prepare
           command: npm run build:prepare
       - run:
