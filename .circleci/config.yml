@@ -16,7 +16,14 @@ jobs:
           command: npm install
       - run:
           name: Install Globals
-          command: echo "Gradle Version $GRADLE_VERSION" #&& brew install gradle
+          command: | #echo "Gradle Version $GRADLE_VERSION" #&& brew install gradle
+            ENV GRADLE_VERSION=3.2.1
+            RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/gradle.zip \
+                https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip \
+              && unzip -d /opt /tmp/gradle.zip \
+              && rm /tmp/gradle.zip \
+              && ln -s /opt/gradle-* /opt/gradle \
+              && /opt/gradle/bin/gradle -version
       - run:
           name: Prepare
           command: npm run build:prepare
