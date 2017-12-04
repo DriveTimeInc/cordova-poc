@@ -6,7 +6,7 @@ jobs:
     #   xcode: "9.0"
     working_directory: ~/code
     docker:
-      - image: circleci/android:api-25-node8-alpha
+      - image: circleci/android
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -17,13 +17,6 @@ jobs:
       - run:
           name: Install Globals
           command: | #echo "Gradle Version $GRADLE_VERSION" #&& brew install gradle
-            #ENV GRADLE_VERSION=3.2.1
-            RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/gradle.zip \
-                https://services.gradle.org/distributions/gradle-3.2.1-bin.zip \
-              && unzip -d /opt /tmp/gradle.zip \
-              && rm /tmp/gradle.zip \
-              && ln -s /opt/gradle-* /opt/gradle \
-              && /opt/gradle/bin/gradle -version
       - run:
           name: Prepare
           command: npm run build:prepare
