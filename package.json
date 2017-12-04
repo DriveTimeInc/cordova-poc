@@ -25,5 +25,8 @@
       "android",
       "ios"
     ]
+  },
+  "devDependencies": {
+    "cordova": "^7.1.0"
   }
 }
