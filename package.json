@@ -28,6 +28,7 @@
     ]
   },
   "devDependencies": {
-    "cordova": "^7.1.0"
+    "cordova": "^7.1.0",
+    "gradle": "^1.0.8"
   }
 }
