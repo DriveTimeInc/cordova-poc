@@ -1,0 +1,41 @@
+machine:
+  environment:
+    XCODE_SCHEME: "platforms/ios/cordovapoc.xcworkspace"
+
+general:
+  branches:
+    only:
+    - master
+
+dependencies:
+  pre:
+    - brew list -1 | while read line; do brew unlink $line; brew link $line; done
+    - brew install node && sudo brew postinstall node
+    - brew install caskroom/cask/brew-cask
+    - brew cask install java
+    - brew install android-sdk
+    - npm install -g cordova ios-deploy ios-sim
+    - gem update fastlane
+    - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-27.0.1,android-27
+  override:
+    - sudo npm cache clean
+    - sudo npm install -g cordova
+    - sudo npm install -g bamlab/cordova-deploy
+    - npm install
+    # - ionic state restore
+    # - ionic prepare
+    - ./builds/sign-ios.sh
+
+test:
+  override:
+    - echo "Do your tests here"
+
+deployment:
+  beta_distribution:
+    branch: 'master'
+    commands:
+      - cordova build android --release
+      - cordova-deploy --build --android --ios --iosid $HOCKEY_IOS_APP_ID --apikey $HOCKEY_API_KEY --apk ./platforms/android/build/outputs/apk/android-debug.apk --andid  $HOCKEY_ANDROID_APP_ID --notes "Version générée automatiquement par $CIRCLE_USERNAME"
+      - ruby fastlane/select_xcode_signing_method.rb -p platforms/ios/cordova-poc.xcodeproj -t cordova-poc -m 'Manual' -b $CIRCLE_BUILD_NUM -i platforms/ios/cordova-poc/cordova-poc-Info.plist
+      - fastlane ios beta
+      - cp -R ./dist $CIRCLE_ARTIFACTS

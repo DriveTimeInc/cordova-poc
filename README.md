@@ -3,6 +3,9 @@
 
 
 
+
+# Getting Started
+
 ## Android
 
 ```
@@ -19,3 +22,21 @@ sdkmanager --licenses
 ```
 cordova run android
 ```
+
+# iOS
+
+Follow the directions in this article:
+
+https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html
+
+```bash
+$ xcode-select --install
+```
+then
+```bash
+$ npm install -g ios-deploy
+```
+
+
+
+
