@@ -6,7 +6,7 @@ jobs:
     #   xcode: "9.0"
     working_directory: ~/code
     docker:
-      - image: circleci/android
+      - image: circleci/android:api-27-alpha
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
