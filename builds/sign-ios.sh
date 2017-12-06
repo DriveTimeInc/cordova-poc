@@ -1,5 +1,9 @@
 #!/bin/sh
 
+P12_PASSWORD=$1
+
+#echo $P12_PASSWORD
+
 security create-keychain -p 'tempPassword' ios-build.keychain
 security import ./builds/AppleWWDRCA.cer -k ~/Library/Keychains/ios-build.keychain -T /usr/bin/codesign
 security import ./builds/GregBernsCert.cer -k ~/Library/Keychains/ios-build.keychain -T /usr/bin/codesign
