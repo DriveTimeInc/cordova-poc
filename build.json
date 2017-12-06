@@ -1,10 +1,24 @@
 {
   "ios": {
     "debug": {
-      "developmentTeam": "KT6CTR8UUW"
+      "codeSignIdentity": "iPhone Developer",
+      "developmentTeam": "KT6CTR8UUW",
+      "packageType": "development",
+      "buildFlag": [
+          "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
+          "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+      ]
     },
     "release": {
-      "developmentTeam": "KT6CTR8UUW"
+        "codeSignIdentity": "iPhone Developer",
+        "developmentTeam": "KT6CTR8UUW",
+        "packageType": "app-store",
+        "buildFlag": [
+            "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
+            "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
+            "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+        ]
     }
   }
 }

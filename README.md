@@ -1,9 +1,5 @@
 
 
-
-
-
-
 # Getting Started
 
 ## Android
@@ -23,6 +19,12 @@ sdkmanager --licenses
 cordova run android
 ```
 
+Manually install an APK file
+
+```
+adb install C:\repos\MotionMobile\App\android
+```
+
 # iOS
 
 Follow the directions in this article:
@@ -36,6 +38,13 @@ then
 ```bash
 $ npm install -g ios-deploy
 ```
+
+
+
+
+
+
+
 
 
 
