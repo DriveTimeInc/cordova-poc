@@ -152,9 +152,62 @@ This should get the signing information to build the iOS project
 Directions found here:
 https://docs.microsoft.com/en-us/vsts/build-release/apps/mobile/secure-certs#iosinstall
 
-1) Get the 'signing identity' with the following terminal command `security find-identity -v -p codesigning`
+1) Get the 'signing identity' with the following terminal command `security find-identity -v -p codesigning` Example: `0000000000000000000000000000000000000000 "iPhone Developer: Greg Berns (PTQFW4AN2T)"`
 2) Get the UUID for the Mobile Provisioning Profile (Do a Google Search to find out how. Hint: the files are stored here with the GUID/UUID in the file name `./Library/MobileDevice/Provisioning Profiles/`)
 3) In VSTS Cordova plugin's 'iOS' section, set the 'Overrode Signing Using' setting to 'Identifiers', set the 'Signing Identity' and 'Provisioning Profile UUID'
+
+
+
+iPhone Developer: Greg Berns (PTQFW4AN2T)
+cordova build platform ios
+--provisioningProfile 595b7c7d-f3fc-4c84-940e-f4eb45ac5d8f
+--developmentTeam KT6CTR8UUW
+
+
+
+
+
+Error: Error code 65 for command: xcodebuild with args: -xcconfig,/Users/gb/repos/cordova-poc/platforms/ios/cordova/build-debug.xcconfig,-workspace,Cordova-Poc.xcworkspace,-scheme,Cordova-Poc,-configuration,Debug,-destination,generic/platform=iOS,-archivePath,Cordova-Poc.xcarchive,archive,CONFIGURATION_BUILD_DIR=/Users/gb/repos/cordova-poc/platforms/ios/build/device,SHARED_PRECOMPS_DIR=/Users/gb/repos/cordova-poc/platforms/ios/build/sharedpch,EMBEDDED_CONTENT_CONTAINS_SWIFT = YES,ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO,LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks",DEVELOPMENT_TEAM=KT6CTR8UUW,PROVISIONING_PROFILE=595b7c7d-f3fc-4c84-940e-f4eb45ac5d8f
+
+
+Reading build config file:
+Building project: /Users/gb/repos/cordova-poc/platforms/ios/Cordova-Poc.xcworkspace
+	Configuration: Debug
+	Platform: device
+Adding xcodebuildArg: EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
+Adding xcodebuildArg: ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO
+Adding xcodebuildArg: LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks"
+Adding xcodebuildArg: DEVELOPMENT_TEAM=KT6CTR8UUW
+Adding xcodebuildArg: PROVISIONING_PROFILE=595b7c7d-f3fc-4c84-940e-f4eb45ac5d8f
+Adding xcodebuildArg: SIGNING_STYLE=manual
+User defaults from command line:
+    IDEArchivePathOverride = /Users/gb/repos/cordova-poc/platforms/ios/Cordova-Poc.xcarchive
+
+Build settings from command line:
+    ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO
+    CONFIGURATION_BUILD_DIR = /Users/gb/repos/cordova-poc/platforms/ios/build/device
+    DEVELOPMENT_TEAM = KT6CTR8UUW
+    EMBEDDED_CONTENT_CONTAINS_SWIFT =  YES
+    LD_RUNPATH_SEARCH_PATHS =  "@executable_path/Frameworks"
+    PROVISIONING_PROFILE = 595b7c7d-f3fc-4c84-940e-f4eb45ac5d8f
+    SHARED_PRECOMPS_DIR = /Users/gb/repos/cordova-poc/platforms/ios/build/sharedpch
+    SIGNING_STYLE = manual
+
+Build settings from configuration file '/Users/gb/repos/cordova-poc/platforms/ios/cordova/build-debug.xcconfig':
+    CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES
+    CODE_SIGN_ENTITLEMENTS = $(PROJECT_DIR)/$(PROJECT_NAME)/Entitlements-$(CONFIGURATION).plist
+    CODE_SIGN_IDENTITY = iPhone Developer
+    DEVELOPMENT_TEAM = KT6CTR8UUW
+    ENABLE_BITCODE = NO
+    GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1
+    HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/usr/local/lib/include" "$(OBJROOT)/UninstalledProducts/include" "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include" "$(BUILT_PRODUCTS_DIR)"
+    OTHER_LDFLAGS = -ObjC
+    SWIFT_OBJC_BRIDGING_HEADER = $(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h
+
+
+
+
+
 
 
 
