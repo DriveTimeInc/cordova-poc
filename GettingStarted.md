@@ -165,6 +165,22 @@ cordova build platform ios
 
 
 
+DEVELOPMENT_TEAM = KT6CTR8UUW
+SIGNING_STYLE = manual
+
+CODE_SIGN_IDENTITY = iPhone Developer
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Developer
+
+PROVISIONING_PROFILE = 595b7c7d-f3fc-4c84-940e-f4eb45ac5d8f
+
+
+
+DEVELOPMENT_TEAM = KT6CTR8UUW
+CODE_SIGN_STYLE = Manual
+PROVISIONING_PROFILE = "595b7c7d-f3fc-4c84-940e-f4eb45ac5d8f"
+PROVISIONING_PROFILE_SPECIFIER = "Greg Berns DriveTime Public Mobile Development"
+
+
 
 
 Error: Error code 65 for command: xcodebuild with args: -xcconfig,/Users/gb/repos/cordova-poc/platforms/ios/cordova/build-debug.xcconfig,-workspace,Cordova-Poc.xcworkspace,-scheme,Cordova-Poc,-configuration,Debug,-destination,generic/platform=iOS,-archivePath,Cordova-Poc.xcarchive,archive,CONFIGURATION_BUILD_DIR=/Users/gb/repos/cordova-poc/platforms/ios/build/device,SHARED_PRECOMPS_DIR=/Users/gb/repos/cordova-poc/platforms/ios/build/sharedpch,EMBEDDED_CONTENT_CONTAINS_SWIFT = YES,ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO,LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks",DEVELOPMENT_TEAM=KT6CTR8UUW,PROVISIONING_PROFILE=595b7c7d-f3fc-4c84-940e-f4eb45ac5d8f
