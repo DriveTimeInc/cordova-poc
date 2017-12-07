@@ -3,7 +3,7 @@ machine:
     XCODE_SCHEME: "platforms/ios/cordovapoc.xcworkspace"
   ruby:
     version:
-      2.3.0
+      2.3.3
 
 general:
   branches:
@@ -14,8 +14,6 @@ dependencies:
   pre:
     #- brew list -1 | while read line; do brew unlink $line; brew link $line; done
     - brew update
-    - brew upgrade ruby
-
     - brew install node && sudo brew postinstall node
     - brew install caskroom/cask/brew-cask
     - brew cask install java
