@@ -17,7 +17,7 @@ dependencies:
     #- brew install node && sudo brew postinstall node # node 6.9.1 is already installed  To upgrade to 8.9.2, run `brew upgrade node`
     - brew install caskroom/cask/brew-cask
     - brew cask install java
-    - brew install android-sdk
+    - brew cask install android-sdk
     - npm install -g cordova ios-deploy ios-sim
     - gem update fastlane
     - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-27.0.1,android-27
