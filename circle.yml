@@ -13,8 +13,8 @@ general:
 dependencies:
   pre:
     #- brew list -1 | while read line; do brew unlink $line; brew link $line; done
-    - brew update
-    - brew install node && sudo brew postinstall node
+    #- brew update
+    #- brew install node && sudo brew postinstall node # node 6.9.1 is already installed  To upgrade to 8.9.2, run `brew upgrade node`
     - brew install caskroom/cask/brew-cask
     - brew cask install java
     - brew install android-sdk
