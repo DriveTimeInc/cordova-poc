@@ -12,8 +12,10 @@ general:
 
 dependencies:
   pre:
-    - brew list -1 | while read line; do brew unlink $line; brew link $line; done
-    - echo ruby -v
+    #- brew list -1 | while read line; do brew unlink $line; brew link $line; done
+    - brew update
+    - brew upgrade ruby
+
     - brew install node && sudo brew postinstall node
     - brew install caskroom/cask/brew-cask
     - brew cask install java
