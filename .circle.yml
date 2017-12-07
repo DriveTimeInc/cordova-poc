@@ -1,6 +1,9 @@
 machine:
   environment:
     XCODE_SCHEME: "platforms/ios/cordovapoc.xcworkspace"
+  ruby:
+    version:
+      2.3.0
 
 general:
   branches:
