@@ -32,10 +32,6 @@ dependencies:
     - cordova prepare
     - cordova build
 
-test:
-  override:
-    - echo "Do your tests here"
-
 deployment:
   beta_distribution:
     branch: 'master'
