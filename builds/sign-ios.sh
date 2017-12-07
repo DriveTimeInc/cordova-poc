@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "Start Cert Install"
+
 P12_PASSWORD=$1
 
 #echo $P12_PASSWORD
@@ -16,3 +18,5 @@ cp ./builds/profile/* ~/Library/MobileDevice/Provisioning\ Profiles/
 
 #sudo mkdir -p ./platforms/ios/cordova/
 #sudo cp ./builds/build-release.xcconfig ./platforms/ios/cordova/build-release.xcconfig
+
+echo "End Cert Install"
