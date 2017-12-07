@@ -18,9 +18,12 @@ dependencies:
     - brew install caskroom/cask/brew-cask
     - brew cask install java
     - brew cask install android-sdk
+    - sdkmanager "platform-tools" "platforms;android-27"
     - npm install -g cordova ios-deploy ios-sim
     - gem update fastlane
-    - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-27.0.1,android-27
+    #- ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-27.0.1,android-27
+    # - sdkmanager --update
+
   override:
     - sudo npm cache clean
     - sudo npm install -g cordova
