@@ -13,6 +13,7 @@ general:
 dependencies:
   pre:
     - brew list -1 | while read line; do brew unlink $line; brew link $line; done
+    - echo ruby -v
     - brew install node && sudo brew postinstall node
     - brew install caskroom/cask/brew-cask
     - brew cask install java
@@ -28,6 +29,8 @@ dependencies:
     # - ionic state restore
     # - ionic prepare
     - ./builds/sign-ios.sh
+    - cordova prepare
+    - cordova build
 
 test:
   override:
