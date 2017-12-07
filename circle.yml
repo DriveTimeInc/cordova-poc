@@ -25,22 +25,22 @@ dependencies:
     # - sdkmanager --update
 
   override:
-    - sudo npm cache clean
-    - sudo npm install -g cordova
-    - sudo npm install -g bamlab/cordova-deploy
+    #- sudo npm cache clean
+    # - sudo npm install -g cordova
+    # - sudo npm install -g bamlab/cordova-deploy
     - npm install
     # - ionic state restore
     # - ionic prepare
-    - ./builds/sign-ios.sh
+    - sudo ./builds/sign-ios.sh
     - cordova prepare
     - cordova build
 
-deployment:
-  beta_distribution:
-    branch: 'master'
-    commands:
-      - cordova build android --release
-      - cordova-deploy --build --android --ios --iosid $HOCKEY_IOS_APP_ID --apikey $HOCKEY_API_KEY --apk ./platforms/android/build/outputs/apk/android-debug.apk --andid  $HOCKEY_ANDROID_APP_ID --notes "Version générée automatiquement par $CIRCLE_USERNAME"
-      - ruby fastlane/select_xcode_signing_method.rb -p platforms/ios/cordova-poc.xcodeproj -t cordova-poc -m 'Manual' -b $CIRCLE_BUILD_NUM -i platforms/ios/cordova-poc/cordova-poc-Info.plist
-      - fastlane ios beta
-      - cp -R ./dist $CIRCLE_ARTIFACTS
+# deployment:
+#   beta_distribution:
+#     branch: 'master'
+#     commands:
+#       - cordova build android --release
+#       - cordova-deploy --build --android --ios --iosid $HOCKEY_IOS_APP_ID --apikey $HOCKEY_API_KEY --apk ./platforms/android/build/outputs/apk/android-debug.apk --andid  $HOCKEY_ANDROID_APP_ID --notes "Version générée automatiquement par $CIRCLE_USERNAME"
+#       - ruby fastlane/select_xcode_signing_method.rb -p platforms/ios/cordova-poc.xcodeproj -t cordova-poc -m 'Manual' -b $CIRCLE_BUILD_NUM -i platforms/ios/cordova-poc/cordova-poc-Info.plist
+#       - fastlane ios beta
+#       - cp -R ./dist $CIRCLE_ARTIFACTS
