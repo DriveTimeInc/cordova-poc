@@ -1,6 +1,24 @@
 machine:
   environment:
     XCODE_SCHEME: "platforms/ios/cordovapoc.xcworkspace"
+    # used by fastlane
+    # https://github.com/bamlab/fastlane-plugin-cordova
+    CORDOVA_RELEASE: true
+    CORDOVA_DEVICE: true
+    CORDOVA_BUILD_NUMBER: "123"
+    CORDOVA_PREPARE: true
+
+    CORDOVA_IOS_TEAM_ID: "KT6CTR8UUW"
+    CORDOVA_IOS_PROVISIONING_PROFILE: "595b7c7d-f3fc-4c84-940e-f4eb45ac5d8f"
+    CORDOVA_IOS_RELEASE_BUILD_PATH: "platforms/ios/build/device/Cordova-Poc.ipa"
+    # CORDOVA_IOS_TEAM_ID="KT6CTR8UUW"
+    # CORDOVA_IOS_PROVISIONING_PROFILE="595b7c7d-f3fc-4c84-940e-f4eb45ac5d8f"
+    # CORDOVA_IOS_RELEASE_BUILD_PATH="platforms/ios/build/device/Cordova-Poc.ipa"
+
+    CORDOVA_ANDROID_KEYSTORE_PATH: ""
+    CORDOVA_ANDROID_KEYSTORE_PASSWORD: "<PASSWORD>"
+    CORDOVA_ANDROID_RELEASE_BUILD_PATH: "platforms/android/build/outputs/apk/debug/android-debug.apk"
+
   ruby:
     version:
       2.3.3
@@ -19,8 +37,10 @@ dependencies:
     - brew cask install java
     - brew cask install android-sdk
     - sdkmanager "platform-tools" "platforms;android-27"
+    #- brew cask install fastlane
     - npm install -g cordova ios-deploy ios-sim
     - gem update fastlane
+    - fastlane add_plugin cordova
     #- ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-27.0.1,android-27
     # - sdkmanager --update
 
@@ -31,9 +51,10 @@ dependencies:
     - npm install
     # - ionic state restore
     # - ionic prepare
-    - sudo ./builds/sign-ios.sh
-    - cordova prepare
-    - cordova build
+    - sudo sh ./builds/sign-ios.sh
+    #- cordova prepare
+    #- cordova build
+    #- fastlane beta
 
 # deployment:
 #   beta_distribution:
